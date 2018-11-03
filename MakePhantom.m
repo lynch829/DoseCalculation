@@ -1,0 +1,13 @@
+nx=256;
+ny=256;
+dx=0.5;
+dy=0.5;
+a=20;
+b=30;
+x=(-(nx-1)/2:(nx-1)/2)*dx;
+y=(-(ny-1)/2:(ny-1)/2)*dy;
+[xx,yy]=meshgrid(x,y);
+eclipse=(xx.^2/a^2)+(yy.^2/b^2);
+ph=zeros(nx,ny);
+ph(eclipse<1)=1;
+% figure(1);imshow(ph,[]);
