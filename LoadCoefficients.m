@@ -1,6 +1,6 @@
-Water_filename='MaterialData\WaterCoeff.txt';
-Bone_filename='MaterialData\BoneCoeff.txt';
-SoftTissue_filename='MaterialData\SoftTissueCoeff.txt';
+Water_filename='MaterialData/WaterCoeff.txt';
+Bone_filename='MaterialData/BoneCoeff.txt';
+SoftTissue_filename='MaterialData/SoftTissueCoeff.txt';
 f=fopen(Water_filename);
 count=1;
 water=cell(0);
@@ -56,6 +56,10 @@ for i=1:length(soft_tissue)
     soft_tissue_attn(2,i)=str2double(soft_tissue{i}(2));
     soft_tissue_absor(2,i)=str2double(soft_tissue{i}(3));
 end
+attns=cell(3,1);
+attns{1}=water_attn;
+attns{2}=bone_attn;
+attns{3}=soft_tissue_attn;
 % figure(1);loglog(water_attn(1,:),water_attn(2,:),'k');hold on;
 % loglog(water_absor(1,:),water_absor(2,:),'--k');hold off;
 % title('Water mass attenuation/absorbption coefficient');
