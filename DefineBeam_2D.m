@@ -1,14 +1,14 @@
 % beam_center=[0, -50];
-beam_center=[beam_SAD*sind(beam_angle), beam_SAD*cosd(beam_angle)];
 beam_SAD=50;
 beam_angle=45;
+beam_center=[beam_SAD*sind(beam_angle), beam_SAD*cosd(beam_angle)];
 beam_energy=6000;
 beam_nx=11;
 % beam_ny=1;
 beam_dx=0.25;
 beam_dy=0.25;
-beam_x=beam_SAD*sind(beam_angle)+cosd(beam_angle)*((0:beam_nx-1)-(beam_nx-1)/2)*beam_dx;
-beam_y=beam_SAD*cosd(beam_angle)+sind(beam_angle)*((0:beam_nx-1)-(beam_nx-1)/2)*beam_dx;
+beam_x=beam_center(1)+cosd(beam_angle)*((0:beam_nx-1)-(beam_nx-1)/2)*beam_dx;
+beam_y=beam_center(2)+sind(beam_angle)*((0:beam_nx-1)-(beam_nx-1)/2)*beam_dx;
 source_params.beam_center=beam_center; % real coordinate
 source_params.beam_angle=beam_angle;
 source_params.beam_energy=beam_energy; % keV
