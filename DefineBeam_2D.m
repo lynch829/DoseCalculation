@@ -1,6 +1,6 @@
 % beam_center=[0, -50];
 beam_SAD=50;
-beam_angle=45;
+beam_angle=0;
 beam_center=[beam_SAD*sind(beam_angle), beam_SAD*cosd(beam_angle)];
 beam_energy=6000;
 beam_nx=11;
