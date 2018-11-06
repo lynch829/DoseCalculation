@@ -60,6 +60,7 @@ attns=cell(3,1);
 attns{1}=water_attn;
 attns{2}=bone_attn;
 attns{3}=soft_tissue_attn;
+LoadDensity;
 % figure(1);loglog(water_attn(1,:),water_attn(2,:),'k');hold on;
 % loglog(water_absor(1,:),water_absor(2,:),'--k');hold off;
 % title('Water mass attenuation/absorbption coefficient');

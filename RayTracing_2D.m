@@ -1,6 +1,7 @@
-function [terma] = RayTracing_2D(fluence,source_params,phantom,phantom_params)
+function [terma] = RayTracing_2D(fluence,source_params,phantom_attn,phantom_mass_attn...
+    ,phantom_params)
 dx=phantom_params.dx;
-dy=phantom_params.dy;
+dy=-phantom_params.dy;
 phantom_origin=phantom_params.origin;
 nx=phantom_params.nx;
 ny=phantom_params.ny;
@@ -18,6 +19,7 @@ weight_map=zeros(nx,ny);
 ref_vector=-source_params.beam_center;
 fluence2=fluence;
 for i=1:length(fluence)
+% for i=10:10 %length(fluence)
     SourceX=beam_x(i);
     SourceY=beam_y(i);
     DetectorX=SourceX+2*ref_vector(1);
@@ -54,7 +56,7 @@ for i=1:length(fluence)
     alpha=uniquetol(sort([alpha_min,alpha_x,alpha_y,alpha_max]),tol_min/alpha_max);
     l=zeros(length(alpha)-1,1);
     d12=sqrt((SourceX-DetectorY)^2+(SourceY-DetectorY)^2);
-    fprintf('%f\n',d12);
+%     fprintf('%f\n',d12);
     for j=1:length(l)
         l(j)=d12*(alpha(j+1)-alpha(j));
         alpha_mid=(alpha(j+1)+alpha(j))/2;
@@ -68,9 +70,12 @@ for i=1:length(fluence)
         end
         index_x=floor(xx+1);
         index_y=floor(yy+1);
-        fluence2(i)=fluence2(i)*exp(-l(j)*phantom(index_x,index_y));
-        fprintf('%f %f\n',l(j),fluence2(i));
-        terma(index_x,index_y)=fluence2(i);
+%         fprintf('%f %f\n',fluece2(i), fluence2(i)*exp(-l(j)*phantom_attn(index_y,index_x)));
+        assert(fluence2(i)>=fluence2(i)*exp(-l(j)*phantom_attn(index_y,index_x)));
+        
+        fluence2(i)=fluence2(i)*exp(-l(j)*phantom_attn(index_y,index_x));
+%         fprintf('%f %f\n',l(j),fluence2(i));
+        terma(index_y,index_x)=phantom_mass_attn(index_y,index_x)*fluence2(i);
 %             weight_map(index_y,index_x,angle_index)=weight_map(index_y,index_x,angle_index)+l(i);
     end
 end
