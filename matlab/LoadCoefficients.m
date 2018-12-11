@@ -1,6 +1,6 @@
-Water_filename='MaterialData/WaterCoeff.txt';
-Bone_filename='MaterialData/BoneCoeff.txt';
-SoftTissue_filename='MaterialData/SoftTissueCoeff.txt';
+Water_filename='../MaterialData/WaterCoeff.txt';
+Bone_filename='../MaterialData/BoneCoeff.txt';
+SoftTissue_filename='../MaterialData/SoftTissueCoeff.txt';
 f=fopen(Water_filename);
 count=1;
 water=cell(0);
